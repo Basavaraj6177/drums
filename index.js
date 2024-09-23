@@ -1,15 +1,18 @@
+// detect button pressed
 for(var i=0;i<document.querySelectorAll(".drum").length;i++){
 document.querySelectorAll(".drum")[i].addEventListener("click",hanleclick);
 function hanleclick(){ 
    var ourcase = this.innerHTML;
    makesound(ourcase);
-
+   buttonanimation(ourcase);
 }
 }
+// detect key pressed 
 document.addEventListener("keypress",function(event){
     makesound(event.key);
+    buttonanimation(event.key);
 }  );
-
+// make sound based on key 
 function makesound(key){
     switch (key) {
         case "w":
@@ -44,3 +47,10 @@ function makesound(key){
             break;
        }  
 }
+// animation for button 
+function buttonanimation(currentkey){
+        var activebutton= document.querySelector("."+currentkey);
+        activebutton.classList.add("pressed");
+        setTimeout(function(){
+            activebutton.classList.remove("pressed");},100);
+        }
